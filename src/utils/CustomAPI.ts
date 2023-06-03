@@ -1,10 +1,7 @@
 import axios from "axios";
 
-const CustomAPI = axios.create({
-    baseURL: "https://backend.dplgroupbd.com/api/v1",
-    headers: {
-        'token' : localStorage.getItem('token')
-    }
+const baseAPI = axios.create({
+    baseURL: "http://localhost:5000/user",
 })
 
-export default CustomAPI;
+export default baseAPI;

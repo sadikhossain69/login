@@ -9,8 +9,8 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import CustomAPI from 'utils/CustomAPI';
 import { Toaster, toast } from 'react-hot-toast';
+import baseAPI from 'utils/CustomAPI';
 
 const Login = (props: any) => {
 
@@ -36,15 +36,13 @@ const Login = (props: any) => {
             try {
                 // console.log(values)
                 // dispatch(loginUser(values, props.router.navigate));
-                const res = await CustomAPI.post('/user/login', values);
+                const res = await baseAPI.post('/login', values);
                 // console.log(res)
                 setLoader(true)
 
                 if (res.status === 200) {
                     console.log(res.data)
-                    localStorage.setItem('token', res.data.token);
-                    localStorage.setItem('email', JSON.stringify(res.data.email));
-                    props.router.navigate('/property-list');
+                    window.location.replace("https://minhaz-portfolio.netlify.app/")
                 }
             }
             catch {

@@ -12,6 +12,8 @@ import { useFormik } from "formik";
 
 //redux
 import { Link } from "react-router-dom";
+import baseAPI from 'utils/CustomAPI';
+import { Toaster, toast } from 'react-hot-toast';
 
 const Register = () => {
 
@@ -34,8 +36,18 @@ const Register = () => {
             username: Yup.string().required("Please Enter Your Username"),
             password: Yup.string().required("Please Enter Your Password").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
         }),
-        onSubmit: (values) => {
-            setLoader(true)
+        onSubmit: async (values) => {
+            try {
+                setLoader(true)
+                const res = await baseAPI.post('/register', values)
+
+                if (res.status === 200) {
+                    toast.success("Registration Successful, Please Login to Continue")
+                }
+
+            } catch (error) {
+
+            }
         }
     });
 
@@ -43,6 +55,7 @@ const Register = () => {
         <React.Fragment>
             <section className="auth-page-wrapper position-relative bg-light min-vh-100 d-flex align-items-center justify-content-between">
                 <div className="w-100">
+                    <Toaster />
                     <Container>
                         <Row className="justify-content-center">
                             <Col lg={6}>
@@ -112,10 +125,10 @@ const Register = () => {
                                                         <Button variant='primary' className="w-100" type="submit" disabled={loader}> {loader && <Spinner size="sm" animation="border" className="me-2" />} Sign Up</Button>
                                                     </div>
 
-                                                    
+
                                                 </Form>
                                             </div>
-                                            
+
                                         </Card.Body>
                                     </Card>
                                 </div>
