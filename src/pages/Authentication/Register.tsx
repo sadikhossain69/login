@@ -42,51 +42,12 @@ const Register = () => {
     return (
         <React.Fragment>
             <section className="auth-page-wrapper position-relative bg-light min-vh-100 d-flex align-items-center justify-content-between">
-                <div className="auth-header position-fixed top-0 start-0 end-0 bg-body">
-                    <Container fluid={true}>
-                        <Row className="justify-content-between align-items-center">
-                            <Col className="col-2">
-                                <Link className="navbar-brand mb-2 mb-sm-0" to="/">
-                                    <img src={logoDark} className="card-logo card-logo-dark" alt="logo dark" height="22" />
-                                    <img src={logoLight} className="card-logo card-logo-light" alt="logo light" height="22" />
-                                </Link>
-                            </Col>
-                            <div className="col-auto">
-                                <ul className="list-unstyled hstack gap-2 mb-0">
-                                    <li className="me-md-3">
-                                        <Link to="#" className="text-body fw-medium fs-15">Become a Selling</Link>
-                                    </li>
-                                    <li className="d-none d-md-block">
-                                        <Link to="#" className="btn btn-soft-secondary" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i className="bi bi-google-play align-middle me-1"></i> Download App
-                                        </Link>
-                                    </li>
-                                    <li className="d-none d-md-block">
-                                        <Link to="#" className="btn btn-soft-primary" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i className="bi bi-apple align-middle me-1"></i> Download App
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </Row>
-                    </Container>
-                </div>
                 <div className="w-100">
                     <Container>
                         <Row className="justify-content-center">
                             <Col lg={6}>
                                 <div className="auth-card mx-lg-3">
                                     <Card className="border-0 mb-0">
-                                        <Card.Header className="bg-primary border-0">
-                                            <Row>
-                                                <Col lg={4} className="col-3">
-                                                    <img src={img1} alt="" className="img-fluid" />
-                                                </Col>
-                                                <Col lg={8} className="col-9">
-                                                    <h1 className="text-white text-capitalize lh-base fw-lighter">Let's get started with Toner Store</h1>
-                                                </Col>
-                                            </Row>
-                                        </Card.Header>
                                         <Card.Body>
                                             <p className="text-muted fs-15">Get your free Toner account now</p>
                                             <div className="p-2">
@@ -151,23 +112,10 @@ const Register = () => {
                                                         <Button variant='primary' className="w-100" type="submit" disabled={loader}> {loader && <Spinner size="sm" animation="border" className="me-2" />} Sign Up</Button>
                                                     </div>
 
-                                                    <div className="mt-4 text-center">
-                                                        <div className="signin-other-title">
-                                                            <h5 className="fs-13 mb-4 title text-muted">Create account with</h5>
-                                                        </div>
-
-                                                        <div className="pt-2 hstack gap-2 justify-content-center">
-                                                            <Button variant='soft-primary' className="btn-icon"><i className="ri-facebook-fill fs-16"></i></Button>
-                                                            <Button variant='soft-danger' className="btn-icon"><i className="ri-google-fill fs-16"></i></Button>
-                                                            <Button variant='soft-dark' className="btn-icon"><i className="ri-github-fill fs-16"></i></Button>
-                                                            <Button variant='soft-info' className="btn-icon"><i className="ri-twitter-fill fs-16"></i></Button>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </Form>
                                             </div>
-                                            <div className="mt-4 text-center">
-                                                <p className="mb-0">Already have an account ? <Link to="/login" className="fw-semibold text-primary text-decoration-underline"> Signin </Link> </p>
-                                            </div>
+                                            
                                         </Card.Body>
                                     </Card>
                                 </div>
@@ -175,7 +123,7 @@ const Register = () => {
                         </Row>
                     </Container>
 
-                    <footer className="footer">
+                    {/* <footer className="footer">
                         <Container>
                             <Row>
                                 <Col lg={12}>
@@ -187,7 +135,7 @@ const Register = () => {
                                 </Col>
                             </Row>
                         </Container>
-                    </footer>
+                    </footer> */}
                 </div>
             </section>
         </React.Fragment>
