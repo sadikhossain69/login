@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, Button, Card, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 
 // Import Images
-import { Link } from 'react-router-dom';
 
 //redux
-import { useSelector, useDispatch } from "react-redux";
 
 // Formik validation
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { loginUser, resetLoginFlag } from "slices/thunk";
-import withRouter from 'Common/withRouter';
 import CustomAPI from 'utils/CustomAPI';
 import { Toaster, toast } from 'react-hot-toast';
 
@@ -20,24 +16,9 @@ const Login = (props: any) => {
 
     document.title = "Login | Dreamers Property Limited + Admin React Template";
 
-    const dispatch = useDispatch<any>();
-    const { user, error } = useSelector((state: any) => ({
-        user: state.Account.user,
-        error: state.Login.error,
-    }));
-
     const [userLogin, setUserLogin] = useState<any>([]);
     const [passwordShow, setPasswordShow] = useState<any>(false);
     const [loader, setLoader] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (user && user) {
-            setUserLogin({
-                email: user.email,
-                password: user.password
-            });
-        }
-    }, [user]);
 
     const validation: any = useFormik({
         // enableReinitialize : use this flag when initial values needs to be changed
@@ -70,17 +51,9 @@ const Login = (props: any) => {
                 toast.error('Email or Password is incorrect');
             }
 
-            
+
         }
     });
-
-
-    useEffect(() => {
-        setTimeout(() => {
-            dispatch(resetLoginFlag());
-        }, 3000);
-        setLoader(false)
-    }, [dispatch, error]);
 
     return (
         <React.Fragment>
@@ -97,7 +70,6 @@ const Login = (props: any) => {
                                         <Card.Body>
                                             <p className="text-muted fs-15">Sign in to continue to Dreamers Property Limited</p>
                                             <div className="p-2">
-                                                {error && error ? (<Alert variant="danger"> User Email and password are invalid. </Alert>) : null}
 
                                                 <Form action="#" onSubmit={(e) => {
                                                     e.preventDefault();
@@ -144,7 +116,9 @@ const Login = (props: any) => {
                                                     </div>
 
                                                     <div className="mt-4">
-                                                        <Button variant='primary' className="w-100" type="submit" disabled={!error ? loader : false}>{!error ? loader && <Spinner size="sm" animation="border" className="me-2" /> : ""}Sign In</Button>
+                                                        <Button variant='primary' className="w-100" type="submit">
+                                                            Sign In
+                                                        </Button>
                                                     </div>
                                                 </Form>
                                             </div>

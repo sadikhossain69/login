@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, Button, Card, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Card, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 
 // Import Images
 import logoDark from 'assets/images/logo-dark.png'
@@ -10,22 +10,14 @@ import img1 from 'assets/images/auth/img-1.png'
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-import { registerUser, apiError, resetRegisterFlag } from "slices/thunk";
-
 //redux
-import { useSelector, useDispatch } from "react-redux";
-
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Register = () => {
 
     document.title = "Register | Toner eCommerce + Admin React Template";
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch<any>();
-
     const [passwordShow, setPasswordShow] = useState<any>(false);
-    const [timer, setTimer] = useState<number>(0);
     const [loader, setLoader] = useState<boolean>(false);
 
     const validation: any = useFormik({
@@ -43,39 +35,9 @@ const Register = () => {
             password: Yup.string().required("Please Enter Your Password").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"),
         }),
         onSubmit: (values) => {
-            dispatch(registerUser(values));
             setLoader(true)
         }
     });
-
-    const { error, success } = useSelector((state: any) => ({
-        success: state.Account.success,
-        error: state.Account.error
-    }));
-
-    useEffect(() => {
-        dispatch(apiError());
-    }, [dispatch]);
-
-    useEffect(() => {
-        if (success) {
-            setTimeout(() => navigate("/login"), 3000);
-            setTimer(3)
-        }
-
-        setTimeout(() => {
-            dispatch(resetRegisterFlag());
-        }, 3000);
-        
-        setLoader(false)
-    }, [dispatch, success, error, navigate]);
-
-
-    useEffect(() => {
-        if (timer) {
-            setInterval(() => setTimer(timer - 1), 1000);
-        }
-    }, [timer])
 
     return (
         <React.Fragment>
@@ -128,7 +90,6 @@ const Register = () => {
                                         <Card.Body>
                                             <p className="text-muted fs-15">Get your free Toner account now</p>
                                             <div className="p-2">
-                                                {success && <Alert variant="success">Your Redirect to Login Page in {timer} Seconds</Alert>}
                                                 <Form className="needs-validation" action="#" onSubmit={(e) => { e.preventDefault(); validation.handleSubmit(); return false; }}>
 
                                                     <div className="mb-3">
