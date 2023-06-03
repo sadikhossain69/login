@@ -118,7 +118,7 @@ const Register = () => {
                                                     </div>
 
                                                     <div className="mb-4">
-                                                        <p className="mb-0 fs-12 text-muted fst-italic">By registering you agree to the Toner <Link to="#" className="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</Link></p>
+                                                        <p className="mb-0 fs-12 text-muted fst-italic">If you register, please go to <Link to="/" className="text-primary text-decoration-underline fst-normal fw-medium">Login</Link> page</p>
                                                     </div>
 
                                                     <div className="mt-4">

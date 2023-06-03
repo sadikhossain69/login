@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 
 import { Toaster, toast } from 'react-hot-toast';
 import baseAPI from 'utils/CustomAPI';
+import { Link } from 'react-router-dom';
 
 const Login = (props: any) => {
 
@@ -111,6 +112,10 @@ const Login = (props: any) => {
                                                             ) : null}
                                                             <Button variant='link' className="position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon" onClick={() => setPasswordShow(!passwordShow)}><i className="ri-eye-fill align-middle"></i></Button>
                                                         </div>
+                                                    </div>
+
+                                                    <div className="mb-4">
+                                                        <p className="mb-0 fs-12 text-muted fst-italic">New here? please go to <Link to="/register" className="text-primary text-decoration-underline fst-normal fw-medium">Register</Link> page</p>
                                                     </div>
 
                                                     <div className="mt-4">
